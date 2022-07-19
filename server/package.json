@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "dgram": "^1.0.1",
+    "events": "^3.3.0",
+    "node": "^18.4.0"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "multi_world",
+  "version": "1.0.0",
+  "main": "config.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
