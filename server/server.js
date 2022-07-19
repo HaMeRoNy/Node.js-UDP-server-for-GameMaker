@@ -11,7 +11,7 @@ function CreateGameServer(server_name,active){ // It is possible to create sever
     this.server_id = uniqIdServer++;
     this.server_name = server_name;
     this.joined_players = []; // pull of players who joined to server
-    this.active = active; //if player can join the server
+    this.active = active; //if player can join the server or banned
 }
 
 function player(id,x,y,username,health,mana){ // In general data should come from moongodb but now it is absent.
@@ -19,8 +19,6 @@ function player(id,x,y,username,health,mana){ // In general data should come fro
     this.username = username;
     this.x = x;
     this.y = y;
-    this.health = health;
-    this.mana = mana;
 }
 
 var gameServers = [] 
@@ -66,10 +64,13 @@ function update_server_list(data,rinfo){
     }
     server.send(JSON.stringify(data), rinfo.port , rinfo.address);
 };
-// Tryin to join one of the servers
+
+// Trying to join one of the servers
 function join_game_host(data,rinfo){
     let  serverId = data.joinedServer
-    gameServers[serverId].joined_players.push([new player(0,0)]) // In general data should come from moongodb but now it is absent.
+    let pId = 0 //temp player id
+    gameServers[serverId].joined_players.push([new player(pId,0,0)]) // In general data should come from moongodb but now it is absent.
+    data.pId = pId
     data.resp = true;
     data.joinedServer = 1
     server.send(JSON.stringify(data), rinfo.port , rinfo.address);
