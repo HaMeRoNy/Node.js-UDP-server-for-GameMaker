@@ -1,6 +1,29 @@
 {
   "resources": [
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
+    {"id":{"name":"demo_SH_IMG_BUTTON_GREEN_SM","path":"sprites/demo_SH_IMG_BUTTON_GREEN_SM/demo_SH_IMG_BUTTON_GREEN_SM.yy",},"order":3,},
+    {"id":{"name":"obj_button_udate_server_list","path":"objects/obj_button_udate_server_list/obj_button_udate_server_list.yy",},"order":3,},
+    {"id":{"name":"server_data_send","path":"scripts/server_data_send/server_data_send.yy",},"order":8,},
+    {"id":{"name":"rmServerJoin","path":"rooms/rmServerJoin/rmServerJoin.yy",},"order":2,},
+    {"id":{"name":"demo_SH_IMG_BUTTON_SM","path":"sprites/demo_SH_IMG_BUTTON_SM/demo_SH_IMG_BUTTON_SM.yy",},"order":6,},
+    {"id":{"name":"demo_SH_IMG_BUTTON_ORANGE","path":"sprites/demo_SH_IMG_BUTTON_ORANGE/demo_SH_IMG_BUTTON_ORANGE.yy",},"order":4,},
+    {"id":{"name":"send_udp_map","path":"scripts/send_udp_map/send_udp_map.yy",},"order":6,},
+    {"id":{"name":"obj_PlayerOther","path":"objects/obj_PlayerOther/obj_PlayerOther.yy",},"order":4,},
+    {"id":{"name":"scr_Movement","path":"scripts/scr_Movement/scr_Movement.yy",},"order":0,},
+    {"id":{"name":"server_data_receive","path":"scripts/server_data_receive/server_data_receive.yy",},"order":7,},
+    {"id":{"name":"character","path":"sprites/character/character.yy",},"order":17,},
+    {"id":{"name":"obj_button_join","path":"objects/obj_button_join/obj_button_join.yy",},"order":2,},
+    {"id":{"name":"msg_type","path":"scripts/msg_type/msg_type.yy",},"order":0,},
+    {"id":{"name":"demo_SH_IMG_BUTTON_YELLOW","path":"sprites/demo_SH_IMG_BUTTON_YELLOW/demo_SH_IMG_BUTTON_YELLOW.yy",},"order":7,},
+    {"id":{"name":"demo_SH_IMG_BUTTON_ORANGE_SM","path":"sprites/demo_SH_IMG_BUTTON_ORANGE_SM/demo_SH_IMG_BUTTON_ORANGE_SM.yy",},"order":5,},
+    {"id":{"name":"demo_SH_IMG_BUTTON_YELLOW_SM","path":"sprites/demo_SH_IMG_BUTTON_YELLOW_SM/demo_SH_IMG_BUTTON_YELLOW_SM.yy",},"order":8,},
+    {"id":{"name":"obj_server_client","path":"objects/obj_server_client/obj_server_client.yy",},"order":5,},
+    {"id":{"name":"objPlayerBasic","path":"objects/objPlayerBasic/objPlayerBasic.yy",},"order":0,},
+    {"id":{"name":"obj_button_back","path":"objects/obj_button_back/obj_button_back.yy",},"order":1,},
+    {"id":{"name":"MACROS","path":"scripts/MACROS/MACROS.yy",},"order":16,},
+    {"id":{"name":"demo_SH_IMG_BUTTON_BLUE","path":"sprites/demo_SH_IMG_BUTTON_BLUE/demo_SH_IMG_BUTTON_BLUE.yy",},"order":0,},
+    {"id":{"name":"read_controls","path":"scripts/read_controls/read_controls.yy",},"order":1,},
+    {"id":{"name":"demo_SH_IMG_BUTTON_BLUE_SM","path":"sprites/demo_SH_IMG_BUTTON_BLUE_SM/demo_SH_IMG_BUTTON_BLUE_SM.yy",},"order":1,},
+    {"id":{"name":"demo_SH_IMG_BUTTON_GREEN","path":"sprites/demo_SH_IMG_BUTTON_GREEN/demo_SH_IMG_BUTTON_GREEN.yy",},"order":2,},
   ],
   "Options": [
     {"name":"Android","path":"options/android/options_android.yy",},
@@ -20,7 +43,7 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"rmServerJoin","path":"rooms/rmServerJoin/rmServerJoin.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":1,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
@@ -37,6 +60,8 @@
     {"folderPath":"folders/Animation Curves.yy","order":12,"resourceVersion":"1.0","name":"Animation Curves","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Notes.yy","order":13,"resourceVersion":"1.0","name":"Notes","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Extensions.yy","order":14,"resourceVersion":"1.0","name":"Extensions","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Network.yy","order":15,"resourceVersion":"1.0","name":"Network","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/Buttons.yy","order":0,"resourceVersion":"1.0","name":"Buttons","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
