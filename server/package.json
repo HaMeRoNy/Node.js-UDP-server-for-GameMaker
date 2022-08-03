@@ -2,9 +2,10 @@
   "dependencies": {
     "dgram": "^1.0.1",
     "events": "^3.3.0",
-    "node": "^18.4.0"
+    "node": "^18.4.0",
+    "uuid": "^8.3.2"
   },
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "start": "node server.js"
   },
