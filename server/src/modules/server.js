@@ -1,6 +1,7 @@
 class Server {
     constructor(){
         this.socket
+        this.connectionManager
         this.clients = {}
     }
 }
