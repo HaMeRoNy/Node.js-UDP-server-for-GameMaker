@@ -10,9 +10,7 @@ function server_data_receive(){
 		var message_id=buffer_read(c_rec_buff, buffer_string) //buffer_text
 		response = json_decode(message_id);
 		show_debug_message(message_id)
-		
-		
-		
+				
 		response_type = ds_map_find_value(response , "type");
 		switch (response_type){
 #region Buttons of login room
@@ -40,21 +38,10 @@ function server_data_receive(){
 				if(joinedServer>=0){ //If -1 = 
 					global.client_info.player_pId = ds_map_find_value(response, "pId");
 					global.client_info.serverId = ds_map_find_value(response, "serverId");
-					room_goto(rmGameWorld)
+					//room_goto(rmGameWorld)
 				}else{show_message("Error")}
 			break
 			
-#endregion
-			
-#region other
-			//case msgType.JOIN_HOST:
-			//	show_debug_message("< " + message_id);
-			//	var joinedServer = ds_map_find_value(response, "joinedServer") ;
-			//	//show_debug_message("we create host number " + string(hostNumber) + " and our player")
-			//	if(joinedServer>=0){ //If -1 = 
-			//		room_goto(rmGameWorld)
-			//	}else{show_message("Error")}
-			//break
 #endregion
 		}
 

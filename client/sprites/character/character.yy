@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Node.js UDP server for GameMaker - template",
-    "path": "Node.js UDP server for GameMaker - template.yyp",
+    "name": "Sprites",
+    "path": "folders/Sprites.yy",
   },
   "resourceVersion": "1.0",
   "name": "character",

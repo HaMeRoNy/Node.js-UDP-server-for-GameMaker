@@ -1,6 +1,7 @@
 const dgram = require('dgram')
 const { v4 } = require('uuid')
 
+
 class Socket{
 
     // Called on init
@@ -34,8 +35,10 @@ class Socket{
             }
 
             // Handle data
+            var data
             data = JSON.parse(buf)
-            console.log(`[${client.uuid}] : ${data}`)
+            console.log(data)
+            console.log(`[${client.uuid}] :`+ data)
        })
     }
 
