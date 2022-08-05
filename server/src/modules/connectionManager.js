@@ -1,5 +1,6 @@
 const sizeof = require('object-sizeof')
-
+let connectionManager;
+let data =[]
 class ConnectionManager {
 
     // Called on init
@@ -11,9 +12,9 @@ class ConnectionManager {
     }
     
     sendHeartBeat(server){
-        let connectionManager = server.connectionManager
+        connectionManager = server.connectionManager
 
-        let data = 0
+        
 
         connectionManager.heartBeatCount += 1
 
@@ -25,7 +26,7 @@ class ConnectionManager {
                 let ip = key.substring(0, index)
                 let port = key.substring(index + 1)
 
-                server.sockey.send(data, port, ip)
+                server.socket.send(data, port, ip)
             }
         }
 
