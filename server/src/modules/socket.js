@@ -37,8 +37,12 @@ class Socket{
             // Handle data
             var data
             data = JSON.parse(buf)
-            console.log(data)
             console.log(`[${client.uuid}] :`+ data)
+
+            if (data.type == 0){
+                count = data.count
+                this.server.connectionManager.addToResponseRecord(client.uuid, count)
+            }
        })
     }
 

@@ -13,7 +13,7 @@ class ConnectionManager {
     sendHeartBeat(server){
         let connectionManager = server.connectionManager
 
-        let data = 0
+        var data
 
         connectionManager.heartBeatCount += 1
 
@@ -24,8 +24,11 @@ class ConnectionManager {
                 let index = key.indexOf("-")
                 let ip = key.substring(0, index)
                 let port = key.substring(index + 1)
+                
+                data.type = 0
+                data.count = connectionManager.heartBeatCount
 
-                server.sockey.send(data, port, ip)
+                server.socket.send(JSON.stringify(data), port, ip)
             }
         }
 
@@ -39,7 +42,7 @@ class ConnectionManager {
 
     // Called to detect disconnections
     onHeartBeatTimeout(server){
-        
+        let connectionManager = server.connectionManager
         // Loop through the record
         for (var key in connectionManager.responseRecord){
             if (connectionManager.responseRecord.hasOwnProperty(key)){
