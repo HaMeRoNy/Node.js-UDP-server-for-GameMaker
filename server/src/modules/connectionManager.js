@@ -13,7 +13,6 @@ class ConnectionManager {
     
     sendHeartBeat(server){
         connectionManager = server.connectionManager
-        var data
         connectionManager.heartBeatCount += 1
 
         for (var key in server.clients){
@@ -24,9 +23,11 @@ class ConnectionManager {
                 let ip = key.substring(0, index)
                 let port = key.substring(index + 1)
                 
-                data.type = 0
-                data.count = connectionManager.heartBeatCount
-
+                data = {
+                    type : 0,
+                    count : connectionManager.heartBeatCount
+                }
+                
                 server.socket.send(JSON.stringify(data), port, ip)
             }
         }
