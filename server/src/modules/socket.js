@@ -1,4 +1,5 @@
 const dgram = require('dgram')
+const { stringify } = require('querystring')
 const { v4 } = require('uuid')
 
 
@@ -37,7 +38,7 @@ class Socket{
             // Handle data
             var data
             data = JSON.parse(buf)
-            console.log(`[${client.uuid}] :`+ data)
+            console.log(`[${client.uuid}] :`+ JSON.stringify(data))
 
             if (data.type == 0){
                 let count = data.count
@@ -50,7 +51,6 @@ class Socket{
     send(data, port, ip){
         this.socket.send(data, port, ip)
     }
-
 }
 
 module.exports = Socket
