@@ -40,7 +40,8 @@ class Socket{
             console.log(`[${client.uuid}] :`+ data)
 
             if (data.type == 0){
-                count = data.count
+                let count = data.count
+                console.log(data.count)
                 this.server.connectionManager.addToResponseRecord(client.uuid, count)
             }
        })

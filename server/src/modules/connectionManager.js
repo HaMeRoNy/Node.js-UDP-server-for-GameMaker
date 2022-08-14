@@ -1,6 +1,4 @@
 const sizeof = require('object-sizeof')
-let connectionManager;
-let data =[]
 class ConnectionManager {
 
     // Called on init
@@ -12,28 +10,25 @@ class ConnectionManager {
     }
     
     sendHeartBeat(server){
-        connectionManager = server.connectionManager
+        let connectionManager = server.connectionManager
         connectionManager.heartBeatCount += 1
 
         for (var key in server.clients){
             if (server.clients.hasOwnProperty(key)) {
 
                 // Split key into ip and port
+                let data ={};
                 let index = key.indexOf("-")
                 let ip = key.substring(0, index)
                 let port = key.substring(index + 1)
                 
-                data = {
-                    type : 0,
-                    count : connectionManager.heartBeatCount
-                }
+                data.type = 0,
+                data.count = connectionManager.heartBeatCount
                 
                 server.socket.send(JSON.stringify(data), port, ip)
             }
         }
-
         setTimeout(connectionManager.onHeartBeatTimeout, 125, server)
-
     }
 
     addToResponseRecord(client, count){

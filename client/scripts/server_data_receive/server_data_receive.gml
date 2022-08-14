@@ -15,31 +15,31 @@ function server_data_receive(){
 		switch (response_type){
 #region Buttons of login room
 			//recive list of strver
-			case msgType.UPDATE_SERVER_LIST:
-				global.serverList = ds_map_find_value(response, "serverList");
-				if (instance_exists(obj_button_join)){
-					instance_destroy(obj_button_join)
-				}
-				for(i=0;i<ds_list_size(global.serverList);i++){
-					var server = i
-					server_number = instance_create_layer(10,10+ (i*64)+(i*10), "Server_Buttons",obj_button_join)
-					with (server_number){
-						server_name = server
-					}
-				}
-			break
+			//case msgType.UPDATE_SERVER_LIST:
+			//	global.serverList = ds_map_find_value(response, "serverList");
+			//	if (instance_exists(obj_button_join)){
+			//		instance_destroy(obj_button_join)
+			//	}
+			//	for(i=0;i<ds_list_size(global.serverList);i++){
+			//		var server = i
+			//		server_number = instance_create_layer(10,10+ (i*64)+(i*10), "Server_Buttons",obj_button_join)
+			//		with (server_number){
+			//			server_name = server
+			//		}
+			//	}
+			//break
 			
 			// Used on button obj_button_join. 
-			case msgType.JOIN_HOST:
+			case msgType.HEARTBEAT: //HEARTBEAT = 0
 				show_debug_message("< " + message_id);
-				var joinedServer = ds_map_find_value(response, "joinedServer");
+				var heart_beat = ds_map_find_value(response, "count");
 				
-				//show_debug_message("we create host number " + string(hostNumber) + " and our player")
-				if(joinedServer>=0){ //If -1 = 
-					global.client_info.player_pId = ds_map_find_value(response, "pId");
-					global.client_info.serverId = ds_map_find_value(response, "serverId");
-					//room_goto(rmGameWorld)
-				}else{show_message("Error")}
+				var data = ds_map_create()
+				ds_map_set(data, "count", heart_beat)
+				//ds_map_set(data, "player_pId", global.client_info.player_pId)
+				//show_debug_message(objPlayerBasic.truestate_current_state) // показывает настоящий стэйт
+
+				sand_map_UDP("127.0.0.1" , 9091 ,1 ,data, response_type )
 			break
 			
 #endregion

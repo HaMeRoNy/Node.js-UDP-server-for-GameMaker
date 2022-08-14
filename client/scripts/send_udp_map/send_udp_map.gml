@@ -1,4 +1,4 @@
-function sand_map_UDP(ip,port, size,map, type){ 
+function sand_map_UDP(ip, port, size, map, type){ 
 	var player_buffer = buffer_create(size,buffer_grow,size)
 	ds_map_add(map, "type" , type)
 	var dataJson = json_encode(map);
