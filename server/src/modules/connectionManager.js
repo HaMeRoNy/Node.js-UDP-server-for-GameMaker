@@ -55,7 +55,7 @@ class ConnectionManager {
     }
 
     onPlayerDisconnect(player){
-
+        console.log("disconnect")
         // Remove from respons record
         delete this.responseRecord[player]
 

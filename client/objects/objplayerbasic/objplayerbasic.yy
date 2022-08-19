@@ -1,8 +1,5 @@
 {
-  "spriteId": {
-    "name": "character",
-    "path": "sprites/character/character.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "managed": true,
