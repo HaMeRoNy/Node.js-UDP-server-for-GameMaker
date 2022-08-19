@@ -10,12 +10,12 @@
   "bbox_left": 0,
   "bbox_right": 159,
   "bbox_top": 16,
-  "bbox_bottom": 255,
+  "bbox_bottom": 111,
   "HTile": false,
   "VTile": false,
   "For3D": false,
   "width": 160,
-  "height": 256,
+  "height": 112,
   "textureGroupId": {
     "name": "Default",
     "path": "texturegroups/Default",
@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"9f94d65e-1a6a-4bd3-b5c9-f5343a925627","path":"sprites/grass/grass.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"9f94d65e-1a6a-4bd3-b5c9-f5343a925627","path":"sprites/grass/grass.yy",},"LayerId":{"name":"6b878c48-76c2-4e48-995d-bec0a06b648e","path":"sprites/grass/grass.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"grass","path":"sprites/grass/grass.yy",},"resourceVersion":"1.0","name":"9f94d65e-1a6a-4bd3-b5c9-f5343a925627","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"f3423c05-f80f-473a-812f-39d73581a13a","path":"sprites/spr_water/spr_water.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"f3423c05-f80f-473a-812f-39d73581a13a","path":"sprites/spr_water/spr_water.yy",},"LayerId":{"name":"afdc7b86-cc8e-4a64-bd7b-91f22eae3cde","path":"sprites/spr_water/spr_water.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_water","path":"sprites/spr_water/spr_water.yy",},"resourceVersion":"1.0","name":"f3423c05-f80f-473a-812f-39d73581a13a","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"grass","path":"sprites/grass/grass.yy",},
+    "spriteId": {"name":"spr_water","path":"sprites/spr_water/spr_water.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"MomentsEventKeyframe",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"84980919-19b8-4e33-adb1-2b03adb279ab","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"9f94d65e-1a6a-4bd3-b5c9-f5343a925627","path":"sprites/grass/grass.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"SpriteFrameKeyframe",},
+            {"id":"40a47f89-7d95-44cb-ae83-e29c1d577c25","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"f3423c05-f80f-473a-812f-39d73581a13a","path":"sprites/spr_water/spr_water.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"SpriteFrameKeyframe",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"SpriteFrameKeyframe",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -58,22 +58,22 @@
     "yorigin": 0,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"grass","path":"sprites/grass/grass.yy",},
+    "parent": {"name":"spr_water","path":"sprites/spr_water/spr_water.yy",},
     "resourceVersion": "1.4",
-    "name": "grass",
+    "name": "spr_water",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"6b878c48-76c2-4e48-995d-bec0a06b648e","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"afdc7b86-cc8e-4a64-bd7b-91f22eae3cde","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Tile Sets",
-    "path": "folders/Tile Sets.yy",
+    "name": "tile sprite",
+    "path": "folders/Sprites/tile sprite.yy",
   },
   "resourceVersion": "1.0",
-  "name": "grass",
+  "name": "spr_water",
   "tags": [],
   "resourceType": "GMSprite",
 }
