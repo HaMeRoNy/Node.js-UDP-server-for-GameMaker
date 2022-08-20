@@ -19,3 +19,4 @@ if(dir>67.6 && dir<=112.5){body_sprite_index = "north/";show_debug_message("YES!
 if(dir>247.6 && dir<=292.5){body_sprite_index = "body_idle_south";show_debug_message("YES!8")} //
 
 updateSprite(dpad_dir);
+depth = -y

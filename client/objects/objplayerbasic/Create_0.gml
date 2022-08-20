@@ -3,6 +3,7 @@
 maxSpeed = 2;
 xScale = 1;
 _sprite_index =legs_run_south
+
 /// @func round_n(value, increment)
 function round_n(_val, _inc) {
 	return round(_val/_inc)*_inc;
@@ -16,7 +17,7 @@ updateSprite = function(_dir){
 		return;
 	}
 	
-	image_speed = 1;
+	image_speed = 0.3;
 	xScale = 1;
 	switch(round_n(_dir, 45) % 360) {
 	  case WEST: xScale = -1; _sprite_index = legs_run_east; break; 
