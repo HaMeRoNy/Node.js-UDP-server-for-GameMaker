@@ -1,14 +1,17 @@
 {
   "spriteId": {
-    "name": "frames_decor",
-    "path": "sprites/frames_decor/frames_decor.yy",
+    "name": "frames_mush",
+    "path": "sprites/frames_mush/frames_mush.yy",
   },
   "solid": false,
   "visible": true,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "obj_bushs_parent",
+    "path": "objects/obj_bushs_parent/obj_bushs_parent.yy",
+  },
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
@@ -21,17 +24,15 @@
   "physicsStartAwake": true,
   "physicsKinematic": false,
   "physicsShapePoints": [],
-  "eventList": [
-    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-  ],
+  "eventList": [],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "decor",
+    "path": "folders/Objects/decor.yy",
   },
   "resourceVersion": "1.0",
-  "name": "tree",
+  "name": "obj_much",
   "tags": [],
   "resourceType": "GMObject",
 }
