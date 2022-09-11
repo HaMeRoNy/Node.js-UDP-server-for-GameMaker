@@ -84,8 +84,8 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"rmGameWorld","path":"rooms/rmGameWorld/rmGameWorld.yy",},},
     {"roomId":{"name":"rmServerJoin","path":"rooms/rmServerJoin/rmServerJoin.yy",},},
+    {"roomId":{"name":"rmGameWorld","path":"rooms/rmGameWorld/rmGameWorld.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":1,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},

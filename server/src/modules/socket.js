@@ -25,31 +25,45 @@ class Socket{
         this.socket.on('message', (buf, remote) => {
             // Check if there is a connection or not
             let client = null
-            if (!this.server.clients.hasOwnProperty(`${remote.address}-${remote.port}`)){
-                // New Connection
-                this.server.clients[`${remote.address}-${remote.port}`] = {uuid : v4()}
-                client = this.server.clients[`${remote.address}-${remote.port}`]
-                console.log(`[${client.uuid}] New client from ${remote.address}:${remote.port}`)
+            let clients = this.server.clients
+            
+            // Loop through all clients and check if the ip and port already exist
+            let if_connection = true
+            for (var key in clients){
+                if (clients[key]["ip"] == remote.address && clients[key]["port"] == remote.port){
+                    // If already connected
+                    if_connection = false
+                    client = key
+                }
             }
-            else{
-                client = this.server.clients[`${remote.address}-${remote.port}`]
+            
+            // If a new connection
+            if (if_connection == true){
+                let id = v4()
+                this.server.clients[id] = {"ip" : remote.address, "port" : remote.port}
+                client = id
+
+                this.server.connectionManager.onPlayerConnect(client)
             }
 
             // Handle data
             var data
             data = JSON.parse(buf)
-            console.log(`[${client.uuid}] :`+ JSON.stringify(data))
 
             if (data.type == 0){
                 let count = data.count
-                console.log(data.count)
-                this.server.connectionManager.addToResponseRecord(client.uuid, count)
+                this.server.connectionManager.addToResponseRecord(client, count)
             }
        })
     }
 
     send(data, port, ip){
         this.socket.send(data, port, ip)
+    }
+
+    sendReliable(data, port, ip){
+        this.socket.send(data, port, ip)
+        this.server.ackManager
     }
 }
 

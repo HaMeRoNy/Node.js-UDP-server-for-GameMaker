@@ -14,20 +14,16 @@ class ConnectionManager {
         connectionManager.heartBeatCount += 1
 
         for (var key in server.clients){
-            if (server.clients.hasOwnProperty(key)) {
+            let ip = server.clients[key]["ip"]
+            let port = server.clients[key]["port"]
 
-                // Split key into ip and port
-                let data ={};
-                let index = key.indexOf("-")
-                let ip = key.substring(0, index)
-                let port = key.substring(index + 1)
-                
-                data.type = 0,
-                data.count = connectionManager.heartBeatCount
-                
-                server.socket.send(JSON.stringify(data), port, ip)
-            }
+            let data = {}
+            data.type = 0
+            data.count = connectionManager.heartBeatCount
+
+            server.socket.send(JSON.stringify(data), port, ip)
         }
+
         setTimeout(connectionManager.onHeartBeatTimeout, 125, server)
     }
 
@@ -50,24 +46,17 @@ class ConnectionManager {
         }
     }
 
-    onPlayerConnec(player){
-
+    onPlayerConnect(id){
+        let client = this.server.clients[id]
+        console.log(`[${id}] New client from ${client["ip"]}:${client["port"]}`)
     }
 
-    onPlayerDisconnect(player){
-        console.log("disconnect")
+    onPlayerDisconnect(id){
         // Remove from respons record
-        delete this.responseRecord[player]
+        delete this.responseRecord[id]
+        delete this.server.clients[id]
 
-        // Remove from client list
-        for (var key in this.server.clients){
-            if (this.server.clients.hasOwnProperty(key)){
-
-                if (this.server.clients[key].uuid = player){
-                    delete this.server.clients[key]
-                }
-            }
-        }
+        console.log(`[${id}] disconnected`)
     }
 }
 
