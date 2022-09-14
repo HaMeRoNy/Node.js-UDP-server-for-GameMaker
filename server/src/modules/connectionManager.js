@@ -1,4 +1,5 @@
 const sizeof = require('object-sizeof')
+const { v4 } = require('uuid')
 class ConnectionManager {
 
     // Called on init
@@ -21,7 +22,7 @@ class ConnectionManager {
             data.type = 0
             data.count = connectionManager.heartBeatCount
 
-            server.socket.send(JSON.stringify(data), port, ip)
+            server.socket.send(data, port, ip)
         }
 
         setTimeout(connectionManager.onHeartBeatTimeout, 125, server)
@@ -49,6 +50,12 @@ class ConnectionManager {
     onPlayerConnect(id){
         let client = this.server.clients[id]
         console.log(`[${id}] New client from ${client["ip"]}:${client["port"]}`)
+
+        let data = {}
+        data.type = 1
+        data.text = "hello"
+        data.id = v4()
+        this.server.socket.sendReliable(data, client["port"], client["ip"])
     }
 
     onPlayerDisconnect(id){

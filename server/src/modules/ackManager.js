@@ -1,14 +1,18 @@
-const { v4 } = require('uuid')
+const { copyFileSync } = require("fs")
 
 class AckManager{
     constructor(server){
         // Main interface
         this.server = server
+
+        // Keep record of sent messages
         this.pendingMessages = []
-        setInterval(this.resendMessages, 1000, this.server)
+
+        // Resends messages if lost
+        setInterval(this.resendMessages, 100, this.server)
     }
 
-
+    // Add message to pending messages
     addMessage(data, port, ip){
         this.pendingMessages.push({
             "ip" : ip,
@@ -17,11 +21,12 @@ class AckManager{
         })
     }
 
+    // Removes messages after being acknowledged
     removeMessage(data){
-        var array = server.ackManager.pendingMessages
-        var length = server.ackManager.pendingMessages.length
+        var array = this.server.ackManager.pendingMessages
+        var length = this.server.ackManager.pendingMessages.length
         for (var i = 0; i < length; i++){
-            if (data == array[i]){
+            if (data == array[i]["data"]["id"]){
                 array.splice(i, 1)
             }
         }
@@ -29,7 +34,7 @@ class AckManager{
 
     resendMessages(server){
         var array = server.ackManager.pendingMessages
-        var length = server.ackManager.pendingMessages.length
+        var length = array.length
         for (var i = 0; i < length; i++){
             server.socket.send(array[i]["data"], array[i]["port"], array[i]["ip"])
         }

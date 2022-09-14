@@ -53,17 +53,19 @@ class Socket{
             if (data.type == 0){
                 let count = data.count
                 this.server.connectionManager.addToResponseRecord(client, count)
+            }else if (data.type ==1){
+                this.server.ackManager.removeMessage(data.data)
             }
        })
     }
 
     send(data, port, ip){
-        this.socket.send(data, port, ip)
+        this.socket.send(JSON.stringify(data), port, ip)
     }
 
     sendReliable(data, port, ip){
-        this.socket.send(data, port, ip)
-        this.server.ackManager
+        this.socket.send(JSON.stringify(data), port, ip)
+        this.server.ackManager.addMessage(data, port, ip)
     }
 }
 
