@@ -1,5 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+global.received_messages = [] 
+
 function server_data_receive(){
 	var pSize = async_load[? "size"]
 	if (pSize > 0){
@@ -46,6 +48,21 @@ function server_data_receive(){
 				// Extract data
 				var msg = ds_map_find_value(response, "text")
 				var msgId = ds_map_find_value(response, "id")
+				
+				// Makes sure we dont accept a message twice
+				for (var i=0;i<array_length(global.received_messages);i++) {
+					if (global.received_messages[i] == msgId){
+						return
+					}
+				}
+				
+				// Make sure the array does not get too big
+				if (array_length(global.received_messages) > 10){
+					array_pop(global.received_messages)
+				}
+				
+				// Remembers recent messages
+				array_push(global.received_messages, msgId)
 				
 				show_debug_message(msg)
 				
