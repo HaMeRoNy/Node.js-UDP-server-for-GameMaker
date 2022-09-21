@@ -17,20 +17,6 @@ function server_data_receive(){
 		response_type = ds_map_find_value(response , "type");
 		switch (response_type){
 #region Buttons of login room
-			//recive list of strver
-			//case msgType.UPDATE_SERVER_LIST:
-			//	global.serverList = ds_map_find_value(response, "serverList");
-			//	if (instance_exists(obj_button_join)){
-			//		instance_destroy(obj_button_join)
-			//	}
-			//	for(i=0;i<ds_list_size(global.serverList);i++){
-			//		var server = i
-			//		server_number = instance_create_layer(10,10+ (i*64)+(i*10), "Server_Buttons",obj_button_join)
-			//		with (server_number){
-			//			server_name = server
-			//		}
-			//	}
-			//break
 			
 			// Used on button obj_button_join. 
 			case msgType.HEARTBEAT: //HEARTBEAT = 0
