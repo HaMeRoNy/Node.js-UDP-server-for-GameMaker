@@ -1,7 +1,7 @@
 const dgram = require('dgram')
 const { stringify } = require('querystring')
 const { v4 } = require('uuid')
-
+const msgType = require("./msgType")
 
 class Socket{
 
@@ -50,12 +50,25 @@ class Socket{
             var data
             data = JSON.parse(buf)
 
-            if (data.type == 0){
-                let count = data.count
-                this.server.connectionManager.addToResponseRecord(client, count)
-            }else if (data.type ==1){
-                this.server.ackManager.removeMessage(data.data)
-            }
+            switch(data.type) {
+
+                case msgType.HEARTBEAT:
+                    let count = data.count
+                    this.server.connectionManager.addToResponseRecord(client, count)
+                break;
+
+                case msgType.ACK:
+                    console.log("acknowleged")
+                    this.server.ackManager.removeMessage(data.id)
+                break;
+
+                case msgType.CONNECT:
+                    console.log("Player tried to connect")
+                break;
+
+              }
+
+
        })
     }
 

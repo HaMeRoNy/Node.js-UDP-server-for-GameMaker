@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "send_udp_map",
+  "name": "send_map_reliable_udp",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

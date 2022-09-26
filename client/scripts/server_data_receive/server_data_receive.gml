@@ -11,26 +11,23 @@ function server_data_receive(){
 		buffer_seek(c_rec_buff,buffer_seek_start,0);
 		var message_id=buffer_read(c_rec_buff, buffer_string) //buffer_text
 		response = json_decode(message_id);
-		
-		//show_debug_message(message_id)
 				
 		response_type = ds_map_find_value(response , "type");
 		switch (response_type){
 #region Buttons of login room
-			
-			// Used on button obj_button_join. 
+			 
 			case msgType.HEARTBEAT: //HEARTBEAT = 0
+				// Copy value
 				var heart_beat = ds_map_find_value(response, "count");
 				
+				// Send heartbeat back
 				var data = ds_map_create()
 				ds_map_set(data, "count", heart_beat)
-				//ds_map_set(data, "player_pId", global.client_info.player_pId)
-				//show_debug_message(objPlayerBasic.truestate_current_state) // показывает настоящий стэйт
-
-				sand_map_UDP("127.0.0.1" , 9091 ,1 ,data, response_type )
+				send_map_UDP("127.0.0.1" , 9091 ,1 ,data, response_type )
+				ds_map_destroy(data)
 			break
 			
-			case msgType.ACK:
+			case msgType.RELIABLE:
 				// Extract data
 				var msg = ds_map_find_value(response, "text")
 				var msgId = ds_map_find_value(response, "id")
@@ -50,12 +47,11 @@ function server_data_receive(){
 				// Remembers recent messages
 				array_push(global.received_messages, msgId)
 				
-				show_debug_message(msg)
-				
 				// Resend id
 				var data = ds_map_create()
-				ds_map_set(data, "data", msgId)
-				sand_map_UDP("127.0.0.1", 9091, 1, data, msgType.ACK)
+				ds_map_set(data, "id", msgId)
+				send_map_UDP("127.0.0.1", 9091, 1, data, msgType.ACK)
+				ds_map_destroy(data)
 			break
 							
 #endregion

@@ -1,5 +1,7 @@
 const sizeof = require('object-sizeof')
 const { v4 } = require('uuid')
+const msgType = require("./msgType")
+
 class ConnectionManager {
 
     // Called on init
@@ -19,7 +21,7 @@ class ConnectionManager {
             let port = server.clients[key]["port"]
 
             let data = {}
-            data.type = 0
+            data.type = msgType.HEARTBEAT
             data.count = connectionManager.heartBeatCount
 
             server.socket.send(data, port, ip)
@@ -52,7 +54,7 @@ class ConnectionManager {
         console.log(`[${id}] New client from ${client["ip"]}:${client["port"]}`)
 
         let data = {}
-        data.type = 1
+        data.type = msgType.RELIABLE
         data.text = "hello"
         data.id = v4()
         this.server.socket.sendReliable(data, client["port"], client["ip"])
