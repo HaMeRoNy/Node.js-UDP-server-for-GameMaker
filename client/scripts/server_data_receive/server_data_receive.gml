@@ -14,7 +14,6 @@ function server_data_receive(){
 				
 		response_type = ds_map_find_value(response , "type");
 		switch (response_type){
-#region Buttons of login room
 			 
 			case msgType.HEARTBEAT: //HEARTBEAT = 0
 				// Copy value
@@ -32,9 +31,18 @@ function server_data_receive(){
 				var msg = ds_map_find_value(response, "text")
 				var msgId = ds_map_find_value(response, "id")
 				
+				show_debug_message(msg)
+			
+				
 				// Makes sure we dont accept a message twice
 				for (var i=0;i<array_length(global.received_messages);i++) {
 					if (global.received_messages[i] == msgId){
+						// Resend id 
+						var data = ds_map_create()
+						ds_map_set(data, "id", msgId)
+						send_map_UDP("127.0.0.1", 9091, 1, data, msgType.ACK)
+						ds_map_destroy(data)
+						
 						return
 					}
 				}
@@ -52,9 +60,24 @@ function server_data_receive(){
 				ds_map_set(data, "id", msgId)
 				send_map_UDP("127.0.0.1", 9091, 1, data, msgType.ACK)
 				ds_map_destroy(data)
+				
+				// Send reliable
+				data = ds_map_create()
+				ds_map_set(data, "text", "hello")
+				send_map_reliable_udp("127.0.0.1", 9091, 1, data)
+				ds_map_destroy(data)
+			break
+			
+			case msgType.ACK:
+				var msg_id = ds_map_find_value(response, "id")
+				for (var i = 0; i < array_length(global.pending_messages); i ++){
+					if (msg_id == ds_map_find_value(ds_map_find_value(global.pending_messages[i], "data"), "id")){
+						ds_map_destroy(ds_map_find_value(global.pending_messages[i], "data"))
+						array_delete(global.pending_messages, i, 1)
+					}
+				}
 			break
 							
-#endregion
 		}
 
 	}

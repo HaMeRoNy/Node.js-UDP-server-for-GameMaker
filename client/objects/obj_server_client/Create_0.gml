@@ -5,3 +5,6 @@ global.client_info = {
 	player_pId : noone,
 	serverId  : noone,
 };
+
+global.pending_messages = []
+alarm[0] = room_speed;
