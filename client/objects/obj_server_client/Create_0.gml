@@ -7,4 +7,5 @@ global.client_info = {
 };
 
 global.pending_messages = []
+global.received_messages = [] 
 alarm[0] = room_speed;

@@ -58,12 +58,16 @@ class Socket{
                 break;
 
                 case msgType.ACK:
-                    console.log("acknowleged")
                     this.server.ackManager.removeMessage(data.id)
                 break;
 
                 case msgType.CONNECT:
                     console.log("Player tried to connect")
+                break;
+
+                case msgType.RELIABLE:
+                    console.log(data.text)
+                    this.server.ackManager.sendAck(remote.address, remote.port, data)
                 break;
 
               }
@@ -77,6 +81,9 @@ class Socket{
     }
 
     sendReliable(data, port, ip){
+        data.type = msgType.RELIABLE
+        data.id = v4()
+        
         this.socket.send(JSON.stringify(data), port, ip)
         this.server.ackManager.addMessage(data, port, ip)
     }

@@ -54,9 +54,7 @@ class ConnectionManager {
         console.log(`[${id}] New client from ${client["ip"]}:${client["port"]}`)
 
         let data = {}
-        data.type = msgType.RELIABLE
         data.text = "hello"
-        data.id = v4()
         this.server.socket.sendReliable(data, client["port"], client["ip"])
     }
 

@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-global.received_messages = [] 
+
 
 function server_data_receive(){
 	var pSize = async_load[? "size"]
@@ -69,7 +69,10 @@ function server_data_receive(){
 			break
 			
 			case msgType.ACK:
+				// Get the id 
 				var msg_id = ds_map_find_value(response, "id")
+				
+				// Erases the map and array index
 				for (var i = 0; i < array_length(global.pending_messages); i ++){
 					if (msg_id == ds_map_find_value(ds_map_find_value(global.pending_messages[i], "data"), "id")){
 						ds_map_destroy(ds_map_find_value(global.pending_messages[i], "data"))
