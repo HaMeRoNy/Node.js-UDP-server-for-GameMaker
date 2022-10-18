@@ -1,6 +1,6 @@
 if (window_get_width() != w_width || window_get_height() != w_height || first_start) {
 	first_start = false;
-	show_debug_message("Resize dettected!!!!!!");
+	show_debug_message("Resize dettected!");
 	
 #region Adaptive resolution
 		// (Local) Variable's

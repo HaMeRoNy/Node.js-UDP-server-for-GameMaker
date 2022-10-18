@@ -143,6 +143,7 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_3ACB520E","properties":[],"isDnd":false,"objectId":{"name":"obj_stone","path":"objects/obj_stone/obj_stone.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":143.0,"y":347.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_78801E31","properties":[],"isDnd":false,"objectId":{"name":"obj_stone","path":"objects/obj_stone/obj_stone.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":18.0,"y":254.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_4AAA4E26","properties":[],"isDnd":false,"objectId":{"name":"obj_stone","path":"objects/obj_stone/obj_stone.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":322.0,"y":174.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_74E2398","properties":[],"isDnd":false,"objectId":{"name":"obj_test","path":"objects/obj_test/obj_test.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":-32.0,"y":64.0,},
       ],"visible":true,"depth":0,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"dirt","tilesetId":{"name":"ts_dirt","path":"tilesets/ts_dirt/ts_dirt.yy",},"x":0,"y":0,"tiles":{"TileDataFormat":1,"SerialiseWidth":44,"SerialiseHeight":44,"TileCompressedData":[
 -5,-2147483648,1,30,-3,49,1,35,-39,-2147483648,5,60,22,49,49,35,-40,-2147483648,5,30,49,49,31,15,-39,-2147483648,1,30,-3,49,2,31,15,-38,-2147483648,2,60,22,-3,49,1,35,-39,-2147483648,
@@ -310,6 +311,7 @@
     {"name":"inst_3ACB520E","path":"rooms/rmGameWorld/rmGameWorld.yy",},
     {"name":"inst_78801E31","path":"rooms/rmGameWorld/rmGameWorld.yy",},
     {"name":"inst_4AAA4E26","path":"rooms/rmGameWorld/rmGameWorld.yy",},
+    {"name":"inst_74E2398","path":"rooms/rmGameWorld/rmGameWorld.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,
