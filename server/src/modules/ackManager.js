@@ -41,9 +41,9 @@ class AckManager{
 		var msgId = data.id
 				
 		// Makes sure we dont accept a message twice
-		for (var i = 0; i < this.received_messages.lengt; i++) {
+		for (var i = 0; i < this.received_messages.length; i++) {
 			if (this.received_messages[i] == msgId){
-                var data = {};
+                var data = {}
                 data.id = msgId
                 data.type = msgType.ACK
                 this.server.socket.send(data, port, ip)

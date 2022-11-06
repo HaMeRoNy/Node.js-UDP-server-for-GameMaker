@@ -12,7 +12,6 @@ function round_n(_val, _inc) {
 }
 
 updateSprite = function(_dir){
-	show_debug_message(_dir)
 	if(_dir == NO_DIRECTION){
 		image_speed = 0;
 		image_index = 0;

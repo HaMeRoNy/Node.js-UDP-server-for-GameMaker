@@ -1,6 +1,7 @@
 const sizeof = require('object-sizeof')
 const { v4 } = require('uuid')
 const msgType = require("./msgType")
+const WorldState = require('./worldState')
 
 class ConnectionManager {
 
@@ -52,10 +53,6 @@ class ConnectionManager {
     onPlayerConnect(id){
         let client = this.server.clients[id]
         console.log(`[${id}] New client from ${client["ip"]}:${client["port"]}`)
-
-        let data = {}
-        data.text = "hello"
-        this.server.socket.sendReliable(data, client["port"], client["ip"])
     }
 
     onPlayerDisconnect(id){

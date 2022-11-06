@@ -28,11 +28,8 @@ function server_data_receive(){
 			
 			case msgType.RELIABLE:
 				// Extract data
-				var msg = ds_map_find_value(response, "text")
 				var msgId = ds_map_find_value(response, "id")
-				
-				show_debug_message(msg)
-			
+				var msgMethod = ds_map_find_value(response, "method")
 				
 				// Makes sure we dont accept a message twice
 				for (var i=0;i<array_length(global.received_messages);i++) {
@@ -61,11 +58,41 @@ function server_data_receive(){
 				send_map_UDP("127.0.0.1", 9091, 1, data, msgType.ACK)
 				ds_map_destroy(data)
 				
-				// Send reliable
-				data = ds_map_create()
-				ds_map_set(data, "text", "hello")
-				send_map_reliable_udp("127.0.0.1", 9091, 1, data)
-				ds_map_destroy(data)
+				
+				switch (msgMethod){
+					case "FetchServerTime":
+						global.latency = (current_time - ds_map_find_value(response, "clientTime")) / 2
+						global.client_clock = ds_map_find_value(response, "serverTime") + global.latency
+					break;
+					
+					case "DetermineLatency":
+						array_push(global.latency_array, (current_time - ds_map_find_value(response, "clientTime")) / 2)
+			
+						if (array_length(global.latency_array) == 9){
+							var total_latency = 0
+							array_sort(global.latency_array, true)
+							var mid_point = global.latency_array[4]
+							
+							for (var i = array_length(global.latency_array)-1; i > -1; i--){
+									if (global.latency_array[i] > (2 * mid_point) && global.latency_array[i] > 20){
+										array_delete(global.latency_array, i, 1)
+									}
+									else {
+										total_latency += global.latency_array[i]
+									}
+							}
+							global.delta_latency = (total_latency / array_length(global.latency_array)) - global.delta_latency
+							global.latency = total_latency / array_length(global.latency_array)
+							for (var i = 0; i < array_length(global.latency_array); i++){
+								array_delete(global.latency_array, i, 1)
+							}
+							
+							
+							
+						}
+					break;
+				}
+				
 			break
 			
 			case msgType.ACK:
@@ -79,6 +106,16 @@ function server_data_receive(){
 						array_delete(global.pending_messages, i, 1)
 					}
 				}
+			break
+			
+			case msgType.WORLDSTATE:
+
+				if (ds_map_find_value(response, "time") > global.last_world_state){
+					global.last_world_state = ds_map_find_value(response, "time")
+					array_push(global.world_state_buffer, response)
+				}
+				
+				
 			break
 							
 		}

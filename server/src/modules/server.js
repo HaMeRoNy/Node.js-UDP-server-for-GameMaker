@@ -3,6 +3,7 @@ class Server {
         this.socket
         this.connectionManager
         this.ackManager
+        this.worldState
         this.clients = {}
     }
 }

@@ -7,5 +7,3 @@ depth = -y
 _scale =random_range(1,1.5)
 image_xscale = _scale
 image_yscale = _scale
-
-show_debug_message("bushs drowed")

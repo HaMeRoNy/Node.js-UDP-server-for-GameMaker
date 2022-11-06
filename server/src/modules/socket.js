@@ -61,15 +61,33 @@ class Socket{
                     this.server.ackManager.removeMessage(data.id)
                 break;
 
-                case msgType.CONNECT:
-                    console.log("Player tried to connect")
-                break;
-
                 case msgType.RELIABLE:
-                    console.log(data.text)
                     this.server.ackManager.sendAck(remote.address, remote.port, data)
+                    switch(data.method){
+                        case "FetchServerTime":
+                            data.serverTime = Date.now()
+                            this.sendReliable(data, remote.port, remote.address)
+                        break;
+
+                        case "DetermineLatency":
+                            this.sendReliable(data, remote.port, remote.address)
+                        break;
+
+                    }
+                    
                 break;
 
+                case msgType.PLAYERSTATE:
+                    let playerStateCollection = this.server.worldState.playerStateCollection
+                    if (playerStateCollection.hasOwnProperty(client)){
+                        if (playerStateCollection[client]["time"] < data.time){
+                            this.server.worldState.playerStateCollection[client] = {time : data.time, x : data.x, y : data.y}
+                        }
+                    }
+                    else{
+                        this.server.worldState.playerStateCollection[client] = {time : data.time, x : data.x, y : data.y}
+                    }
+                break;
               }
 
 
@@ -86,6 +104,28 @@ class Socket{
         
         this.socket.send(JSON.stringify(data), port, ip)
         this.server.ackManager.addMessage(data, port, ip)
+    }
+
+    sendAllReliable(data){
+        let clients = this.server.clients
+        for (var key in clients){
+            let msg = {} 
+            Object.assign(msg, data)
+
+            msg.type = msgType.RELIABLE
+            msg.id = v4()
+
+            this.socket.send(JSON.stringify(msg), clients[key]["port"], clients[key]["ip"])
+            this.server.ackManager.addMessage(msg, clients[key]["port"], clients[key]["ip"])
+
+        }
+    }
+
+    sendAll(data){
+        let clients = this.server.clients
+        for (var key in clients){
+            this.socket.send(JSON.stringify(data), clients[key]["port"], clients[key]["ip"])
+        }
     }
 }
 
