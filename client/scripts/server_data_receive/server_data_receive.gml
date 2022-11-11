@@ -98,7 +98,7 @@ function server_data_receive(){
 					case "playerDisconnect":
 						// Make sure the client is not despawning itself
 						if (ds_map_find_value(response, "playerId") != global.playerId){
-							
+							show_debug_message("Despawn:  "+ds_map_find_value(response, "playerId"))
 							// Desapawn player
 							var a = layer_get_all_elements("otherPlayers")
 							for (var i = 0; i < array_length(a); i++;){

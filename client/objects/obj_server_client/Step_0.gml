@@ -77,6 +77,7 @@ if (array_length(global.world_state_buffer) > 1){
 				
 				// Spawn player
 				if (hasPlayer == false){
+					show_debug_message("Spawn player: " + k)
 					var ws2 = ds_map_find_value(global.world_state_buffer[2], k)
 					var inst = instance_create_layer(ds_map_find_value(ws2, "x"), ds_map_find_value(ws2, "y"), "otherPlayers", objOtherPlayer)
 					inst.ids = k

@@ -29,7 +29,8 @@ class AckManager{
     removeMessage(data){
         var array = this.server.ackManager.pendingMessages
         var length = this.server.ackManager.pendingMessages.length
-        for (var i = 0; i < length; i++){
+
+        for (var i = array.length - 1; i >= 0; i--){
                 if (data == array[i]["data"]["id"]){
                     array.splice(i, 1)
                 }
