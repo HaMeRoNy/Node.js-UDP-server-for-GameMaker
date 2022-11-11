@@ -4,10 +4,11 @@ class WorldState{
     constructor(server){
         this.server = server
         this.playerStateCollection = {}
-        setInterval(this.sendWorldState, 20, this.server)
+        setInterval(this.sendWorldState, 16, this.server)
     }
 
     sendWorldState(server){
+        // Send out world state with server time
         if (JSON.stringify(server.worldState.playerStateCollection) !== '{}'){
             let worldState = structuredClone(server.worldState.playerStateCollection)
             worldState.time = Date.now()

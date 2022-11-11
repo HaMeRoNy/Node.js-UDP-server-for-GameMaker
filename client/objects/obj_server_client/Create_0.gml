@@ -1,10 +1,6 @@
 global.client = network_create_socket(network_socket_udp)
 
-global.client_info = {
-	player_name : noone,
-	player_pId : noone,
-	serverId  : noone,
-};
+global.playerId = ""
 
 // For reliable messages
 global.pending_messages = []
@@ -26,6 +22,7 @@ global.last_world_state = 0
 global.world_state_buffer = []
 global.interpolation_offset = 100
 
+// Get server time
 var data = ds_map_create()
 ds_map_set(data, "method", "FetchServerTime")
 ds_map_set(data, "clientTime", current_time)

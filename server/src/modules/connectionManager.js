@@ -56,9 +56,15 @@ class ConnectionManager {
     }
 
     onPlayerDisconnect(id){
-        // Remove from respons record
+        // Remove from response record
         delete this.responseRecord[id]
         delete this.server.clients[id]
+        delete this.server.worldState.playerStateCollection[id]
+
+        var data = {}
+        data.method = "playerDisconnect"
+        data.playerId = id
+        this.server.socket.sendAllReliable(data)
 
         console.log(`[${id}] disconnected`)
     }

@@ -58,9 +58,11 @@ function server_data_receive(){
 				send_map_UDP("127.0.0.1", 9091, 1, data, msgType.ACK)
 				ds_map_destroy(data)
 				
-				
+				// Switch for different methods
 				switch (msgMethod){
 					case "FetchServerTime":
+						// Set client clock, latency and id
+						global.playerId = ds_map_find_value(response, "playerId")
 						global.latency = (current_time - ds_map_find_value(response, "clientTime")) / 2
 						global.client_clock = ds_map_find_value(response, "serverTime") + global.latency
 					break;
@@ -81,7 +83,8 @@ function server_data_receive(){
 										total_latency += global.latency_array[i]
 									}
 							}
-							global.delta_latency = (total_latency / array_length(global.latency_array)) - global.delta_latency
+							
+							global.delta_latency = (total_latency / array_length(global.latency_array)) - global.latency
 							global.latency = total_latency / array_length(global.latency_array)
 							for (var i = 0; i < array_length(global.latency_array); i++){
 								array_delete(global.latency_array, i, 1)
@@ -90,6 +93,22 @@ function server_data_receive(){
 							
 							
 						}
+					break;
+					
+					case "playerDisconnect":
+						// Make sure the client is not despawning itself
+						if (ds_map_find_value(response, "playerId") != global.playerId){
+							
+							// Desapawn player
+							var a = layer_get_all_elements("otherPlayers")
+							for (var i = 0; i < array_length(a); i++;){
+								if (layer_instance_get_instance(a[i]).ids ==  ds_map_find_value(response, "playerId")){
+									instance_destroy(layer_instance_get_instance(a[i]))
+								}
+							}
+						}
+						
+					
 					break;
 				}
 				
@@ -109,7 +128,7 @@ function server_data_receive(){
 			break
 			
 			case msgType.WORLDSTATE:
-
+				// If newest world state, add to buffer
 				if (ds_map_find_value(response, "time") > global.last_world_state){
 					global.last_world_state = ds_map_find_value(response, "time")
 					array_push(global.world_state_buffer, response)

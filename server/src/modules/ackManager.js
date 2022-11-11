@@ -30,9 +30,9 @@ class AckManager{
         var array = this.server.ackManager.pendingMessages
         var length = this.server.ackManager.pendingMessages.length
         for (var i = 0; i < length; i++){
-            if (data == array[i]["data"]["id"]){
-                array.splice(i, 1)
-            }
+                if (data == array[i]["data"]["id"]){
+                    array.splice(i, 1)
+                }
         }
     }
 

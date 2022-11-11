@@ -66,6 +66,7 @@ class Socket{
                     switch(data.method){
                         case "FetchServerTime":
                             data.serverTime = Date.now()
+                            data.playerId = client
                             this.sendReliable(data, remote.port, remote.address)
                         break;
 
@@ -115,6 +116,7 @@ class Socket{
             msg.type = msgType.RELIABLE
             msg.id = v4()
 
+            console.log(key)
             this.socket.send(JSON.stringify(msg), clients[key]["port"], clients[key]["ip"])
             this.server.ackManager.addMessage(msg, clients[key]["port"], clients[key]["ip"])
 
