@@ -103,7 +103,7 @@ function server_data_receive(){
 							var a = layer_get_all_elements("otherPlayers")
 							for (var i = 0; i < array_length(a); i++;){
 								if (layer_instance_get_instance(a[i]).ids ==  ds_map_find_value(response, "playerId")){
-									instance_destroy(layer_instance_get_instance(a[i]))
+									layer_instance_get_instance(a[i]).destroySelf()
 								}
 							}
 						}

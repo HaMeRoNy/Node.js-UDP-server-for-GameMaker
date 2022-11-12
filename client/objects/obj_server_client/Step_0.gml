@@ -55,23 +55,27 @@ if (array_length(global.world_state_buffer) > 1){
 				var hasPlayer = false
 				var a = layer_get_all_elements("otherPlayers")
 				
+				with all
+				
 				// Check if the player is already spawned
 				for (var i = 0; i < array_length(a); i++;){
-					if (layer_instance_get_instance(a[i]).ids == k){
-						// If already sapwned change the x positions
-						var ws1 = ds_map_find_value(global.world_state_buffer[1], k)
-						var ws2 = ds_map_find_value(global.world_state_buffer[2], k)
+					if (instance_exists(layer_instance_get_instance(a[i]))){
+						if (layer_instance_get_instance(a[i]).ids == k){
+							// If already sapwned change the x positions
+							var ws1 = ds_map_find_value(global.world_state_buffer[1], k)
+							var ws2 = ds_map_find_value(global.world_state_buffer[2], k)
 						
-						var newX = lerp(ds_map_find_value(ws1, "x"), ds_map_find_value(ws2, "x"), interpolationFactor)
-						var newY = lerp(ds_map_find_value(ws1, "y"), ds_map_find_value(ws2, "y"), interpolationFactor)
+							var newX = lerp(ds_map_find_value(ws1, "x"), ds_map_find_value(ws2, "x"), interpolationFactor)
+							var newY = lerp(ds_map_find_value(ws1, "y"), ds_map_find_value(ws2, "y"), interpolationFactor)
 						
-						layer_instance_get_instance(a[i]).x = newX
-						layer_instance_get_instance(a[i]).y = newY
+							layer_instance_get_instance(a[i]).x = newX
+							layer_instance_get_instance(a[i]).y = newY
 
 						
 
-						hasPlayer = true
+							hasPlayer = true
 						
+							}
 						}
 					}	
 				
